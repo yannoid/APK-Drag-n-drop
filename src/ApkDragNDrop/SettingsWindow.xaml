@@ -1,0 +1,48 @@
+<Window x:Class="ApkDragNDrop.SettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Paramètres" Width="320" Height="320"
+        WindowStyle="None" AllowsTransparency="True" Background="Transparent"
+        ResizeMode="NoResize" WindowStartupLocation="CenterOwner">
+
+    <Border CornerRadius="18" Background="{StaticResource WindowBg}">
+        <Border.Effect>
+            <DropShadowEffect BlurRadius="24" ShadowDepth="6" Opacity="0.35" Color="Black"/>
+        </Border.Effect>
+        <Grid Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <DockPanel Grid.Row="0" MouseLeftButtonDown="TitleBar_MouseLeftButtonDown">
+                <TextBlock Text="Paramètres" FontSize="16" FontWeight="SemiBold" Foreground="{StaticResource TextPrimaryBrush}"/>
+                <Button DockPanel.Dock="Right" Style="{StaticResource CloseButton}" Content="✕" Click="OnClose" Width="26" Height="26"/>
+            </DockPanel>
+
+            <CheckBox x:Name="ChkLaunchAtStartup" Grid.Row="1" Margin="0,20,0,0"
+                      Content="Lancer au démarrage de Windows" Foreground="{StaticResource TextPrimaryBrush}"
+                      Checked="OnSettingChanged" Unchecked="OnSettingChanged"/>
+
+            <TextBlock Grid.Row="2" Margin="0,20,0,6" Text="En fermant la fenêtre :"
+                       Foreground="{StaticResource TextSecondaryBrush}" FontWeight="SemiBold" FontSize="11"/>
+
+            <RadioButton x:Name="RadioTray" Grid.Row="3" GroupName="CloseBehavior"
+                         Content="Rester dans la barre des tâches" Foreground="{StaticResource TextPrimaryBrush}"
+                         Margin="0,4,0,0" Checked="OnSettingChanged"/>
+
+            <RadioButton x:Name="RadioExit" Grid.Row="4" GroupName="CloseBehavior"
+                         Content="Fermer l'application" Foreground="{StaticResource TextPrimaryBrush}"
+                         Margin="0,4,0,0" Checked="OnSettingChanged"/>
+
+            <StackPanel Grid.Row="6" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
+                <Button Content="Fermer" Style="{StaticResource SecondaryPillButton}" Click="OnClose"/>
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>

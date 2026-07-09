@@ -1,0 +1,156 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- Palette -->
+    <SolidColorBrush x:Key="WindowBg" Color="#14161C"/>
+    <SolidColorBrush x:Key="GlassPanelBrush" Color="#8C1E2230"/>
+    <SolidColorBrush x:Key="GlassPanelBorderBrush" Color="#1AFFFFFF"/>
+    <SolidColorBrush x:Key="TextPrimaryBrush" Color="#F2F3F7"/>
+    <SolidColorBrush x:Key="TextSecondaryBrush" Color="#9BA0AE"/>
+    <SolidColorBrush x:Key="TextDisabledBrush" Color="#4A4E5C"/>
+
+    <SolidColorBrush x:Key="OnlineBrush" Color="#3DDC84"/>
+    <SolidColorBrush x:Key="OfflineBrush" Color="#9BA0AE"/>
+    <SolidColorBrush x:Key="SuccessBrush" Color="#2FBE7A"/>
+    <SolidColorBrush x:Key="FailedBrush" Color="#FF5A6A"/>
+    <SolidColorBrush x:Key="InstallingBrush" Color="#5B8CFF"/>
+    <SolidColorBrush x:Key="QueuedBrush" Color="#8B93A6"/>
+
+    <LinearGradientBrush x:Key="AccentBrush" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="#6E8CFF" Offset="0"/>
+        <GradientStop Color="#A06CFF" Offset="1"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="AccentHoverBrush" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="#7E9BFF" Offset="0"/>
+        <GradientStop Color="#B07EFF" Offset="1"/>
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="AccentDisabledBrush" Color="#33384A"/>
+
+    <!-- Glass panel border style -->
+    <Style x:Key="GlassPanel" TargetType="Border">
+        <Setter Property="Background" Value="{StaticResource GlassPanelBrush}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource GlassPanelBorderBrush}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="CornerRadius" Value="14"/>
+    </Style>
+
+    <!-- Circular icon button (refresh, close, minimize, remove) -->
+    <Style x:Key="CircleButton" TargetType="Button">
+        <Setter Property="Width" Value="36"/>
+        <Setter Property="Height" Value="36"/>
+        <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="bg" CornerRadius="18" Background="{StaticResource GlassPanelBrush}"
+                            BorderBrush="{StaticResource GlassPanelBorderBrush}" BorderThickness="1">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="bg" Property="Background" Value="#1AFFFFFF"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" Value="0.5"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Titlebar close button (red hover) -->
+    <Style x:Key="CloseButton" TargetType="Button" BasedOn="{StaticResource CircleButton}">
+        <Setter Property="Width" Value="26"/>
+        <Setter Property="Height" Value="26"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="bg" CornerRadius="13" Background="Transparent">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="bg" Property="Background" Value="#33FF5A6A"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Big accent pill button (Send) -->
+    <Style x:Key="AccentPillButton" TargetType="Button">
+        <Setter Property="Height" Value="48"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="bg" CornerRadius="24" Background="{StaticResource AccentBrush}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="bg" Property="Background" Value="{StaticResource AccentHoverBrush}"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="bg" Property="Background" Value="{StaticResource AccentDisabledBrush}"/>
+                            <Setter Property="Foreground" Value="{StaticResource TextDisabledBrush}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Secondary pill button (device dropdown header) -->
+    <Style x:Key="GlassPillToggle" TargetType="ToggleButton">
+        <Setter Property="Height" Value="44"/>
+        <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
+        <Setter Property="FontSize" Value="13"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToggleButton">
+                    <Border x:Name="bg" CornerRadius="22" Background="{StaticResource GlassPanelBrush}"
+                            BorderBrush="{StaticResource GlassPanelBorderBrush}" BorderThickness="1">
+                        <ContentPresenter HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="16,0"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="bg" Property="Background" Value="#1AFFFFFF"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="SecondaryPillButton" TargetType="Button">
+        <Setter Property="Height" Value="36"/>
+        <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border CornerRadius="18" Background="{StaticResource GlassPanelBrush}"
+                            BorderBrush="{StaticResource GlassPanelBorderBrush}" BorderThickness="1" x:Name="bg">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Margin="14,0"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="bg" Property="Background" Value="#1AFFFFFF"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>
