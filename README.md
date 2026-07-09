@@ -22,6 +22,10 @@
 
 # APK Drag'n'drop
 
+<p align="center">
+  <img src="docs/screenshot.png" alt="APK Drag'n'drop en vrai, sur un vrai bureau, avec un vrai appareil branché" width="380">
+</p>
+
 Un utilitaire Windows qui fait **une seule chose** : glisser des `.apk` sur une
 fenêtre, cocher un ou plusieurs téléphones, cliquer sur *Envoyer*. Fin de
 l'histoire.
